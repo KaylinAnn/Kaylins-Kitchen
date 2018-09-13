@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import axios from "axios";
 import { connect } from "react-redux";
 import { SetRecipes } from "../Ducks/Reducer";
-import { Link } from "react-router-dom";
 
 export class Profile extends Component {
   render() {
@@ -14,9 +13,14 @@ export class Profile extends Component {
           return (
             <div>
               <h2>{recipe.recipe.label}</h2>
-              <Link to="/recipe">
-                <img src={recipe.recipe.image} alt="Your Recipes" />
-              </Link>
+              <img src={recipe.recipe.image} />
+              <a href={recipe.recipe.url}>Get Recipe Instructions here!</a>
+
+              <ul>
+                {recipe.recipe.ingredientLines.map(ingredient => {
+                  return <div>{ingredient}</div>;
+                })}
+              </ul>
             </div>
           );
         })
@@ -24,7 +28,7 @@ export class Profile extends Component {
 
     return (
       <div>
-        <h1>Profile</h1>
+        <h1>Profille</h1>
         <div>{mappedRecipes}</div>
       </div>
     );
