@@ -17,13 +17,22 @@ class Dashboard extends Component {
 
     return (
       <div>
-        <h1>DASHBOARD</h1>
-        <div>Name: {user.name}</div>
         <div>
-          Email:
-          {user.email}
+          {user ? (
+            <div>
+              <div className="user-image-container">
+                <img src={user.picture} alt="User" />
+              </div>
+
+              <p>{user.name}</p>
+            </div>
+          ) : (
+            <div>
+              <p>Please login</p>
+              <button onClick={this.login}>Login</button>
+            </div>
+          )}
         </div>
-        <img src={user.picture} alt="user" />
       </div>
     );
   }

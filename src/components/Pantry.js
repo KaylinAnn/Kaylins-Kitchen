@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { connect } from "react-redux";
-import { SetIngredients } from "../Ducks/Reducer";
+import { SetIngredients, CreateIngredient } from "../Ducks/Reducer";
 
 export class Pantry extends Component {
   componentDidMount() {
@@ -10,8 +10,31 @@ export class Pantry extends Component {
       this.props.SetIngredients(ingredient);
     });
   }
+
+  createIngredient() {
+    let createdIngredient = {
+      name: this.refs.pantry.value,
+      user_Id: this.props.user.id
+    };
+    console.log(this.refs.pantry.value);
+
+    console.log(createdIngredient);
+    axios.post("api/ingredients", createdIngredient).then(ingredients => {
+      console.log(ingredients);
+    });
+  }
+
+  handleInput() {
+    if ((this.refs.pantry.value = "")) {
+      alert("Opps! Please add ingredient.");
+    } else {
+      this.props.CreateIngredient(this.refs.pantry.value, this.props.user.id);
+      this.createIngredient();
+    }
+  }
+
   render() {
-    console.log(this.props);
+    console.log(this.props.user);
 
     const { ingredients } = this.props;
     let mappedIngredients = ingredients
@@ -25,6 +48,8 @@ export class Pantry extends Component {
     return (
       <div>
         <h1>Pantry</h1>
+        <input type="text" placeholder="" ref="pantry" />
+        <button onClick={this.handleInput.bind(this)}>Add to Pantry</button>
         <div>ingredients: {mappedIngredients}</div>
       </div>
     );
@@ -32,14 +57,16 @@ export class Pantry extends Component {
 }
 
 const mapStateToProps = state => {
-  const { ingredients } = state;
+  const { ingredients, user } = state;
   return {
-    ingredients
+    ingredients,
+    user
   };
 };
 
 const mapDispatchToProps = {
-  SetIngredients
+  SetIngredients,
+  CreateIngredient
 };
 export default connect(
   mapStateToProps,

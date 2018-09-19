@@ -1,5 +1,8 @@
 import React, { Component } from "react";
-import { Link, withRouter } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+
+import { logOut } from "../Ducks/Reducer";
 
 export class Nav extends Component {
   render() {
@@ -23,4 +26,15 @@ export class Nav extends Component {
   }
 }
 
-export default Nav;
+const mapStateToProps = state => {
+  const { user } = state;
+  return user;
+};
+
+const mapDispatchToProps = {
+  logOut
+};
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Nav);

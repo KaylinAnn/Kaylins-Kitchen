@@ -107,8 +107,12 @@ massive(process.env.CONNECTION_STRING)
     console.log("-------------- database issue", error);
   });
 
-app.get("/api/recipes", controller.getAllRecipes);
+app.get("/api/myrecipes", controller.getUsersRecipes);
+app.get("/api/recipes", controller.getRandomFourRecipes);
 app.get("/api/ingredients", controller.getAllIngredients);
+app.get("/api/myingredients", controller.getUsersIngredients);
+app.post("/api/myingredients", controller.createIngredients);
+app.delete("/api/myingredients/:id", controller.deleteIngredient);
 
 const PORT = 4000;
 app.listen(PORT, () => {

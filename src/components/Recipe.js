@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import axios from "axios";
 import { connect } from "react-redux";
 import { SetRecipes } from "../Ducks/Reducer";
 
@@ -13,7 +12,7 @@ export class Profile extends Component {
           return (
             <div>
               <h2>{recipe.recipe.label}</h2>
-              <img src={recipe.recipe.image} />
+              <img src={recipe.recipe.image} alt="recipe" />
               <a href={recipe.recipe.url}>Get Recipe Instructions here!</a>
 
               <ul>
