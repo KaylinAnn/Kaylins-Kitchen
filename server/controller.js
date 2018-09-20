@@ -51,7 +51,6 @@ module.exports = {
 
   createIngredients: (req, res) => {
     const db = req.app.get("db");
-
     db.create_ingredient_by_user_id([req.session.user.id, req.body.id])
       .then(() => {
         res.status(200).send();
@@ -66,8 +65,8 @@ module.exports = {
   deleteIngredient: (req, res) => {
     const db = req.app.get("db");
     db.delete_ingredient_by_userId([req.session.user.id, req.params.id])
-      .then(ingredients => {
-        res.status(200).send(ingredients);
+      .then(usersPantry => {
+        res.status(200).send(usersPantry);
       })
       .catch(error => {
         console.log(error);

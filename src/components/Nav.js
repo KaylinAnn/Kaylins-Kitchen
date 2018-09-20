@@ -1,14 +1,23 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-
-import { logOut } from "../Ducks/Reducer";
+import axios from 'axios'
+import { logIn, logOut } from "../Ducks/Reducer";
 
 export class Nav extends Component {
+  getUser() {
+    axios.get("api/user-data").then(res => {
+      const user = res.data;
+      this.props.logIn(user);
+    });
+  }
   render() {
+    const user = this.props
+    console.log(user);
+
     return (
-      <div>
-        <h1>Nav</h1>
+      <div className='navbar'>
+        <div className='userName'>Welcome, {user.name}!</div>
         <Link to="/dashboard">
           <button>Home</button>
         </Link>
@@ -32,7 +41,8 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = {
-  logOut
+  logOut,
+  logIn
 };
 export default connect(
   mapStateToProps,

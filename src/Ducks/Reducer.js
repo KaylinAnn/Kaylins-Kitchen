@@ -15,6 +15,9 @@ const LOGGED_IN = "LOGGED_IN";
 const SET_USER_PANTRY = "SET_USER_PANTRY";
 const SET_RECIPES = "SET_RECIPES";
 const LOGGED_OUT = "LOGGED_OUT";
+const SET_ALL_INGREDIENTS = 'SET_ALL_INGREDIENTS';
+const ADD_INGREDIENT_TO_PANTRY = 'ADD_INGREDIENT_TO_PANTRY';
+const DELETE_INGREDIENT_FROM_PANTRY = 'DELETE_INGREDIENT_FROM_PANTRY';
 
 
 
@@ -27,7 +30,13 @@ export default function reducer(state = initialState, action) {
     case SET_USER_PANTRY:
       return { ...state, usersPantry: action.payload };
     case SET_RECIPES:
-      return { ...state, recipes: action.payload }
+      return { ...state, recipes: action.payload };
+    case SET_ALL_INGREDIENTS:
+      return { ...state, ingredients: action.payload };
+    case ADD_INGREDIENT_TO_PANTRY:
+      return { ...state, usersPantry: action.payload };
+    case DELETE_INGREDIENT_FROM_PANTRY:
+      return { ...state, usersPantry: action.payload }
     default:
       return state;
   }
@@ -57,5 +66,26 @@ export function setRecipes(recipes) {
   return {
     type: SET_RECIPES,
     payload: recipes
+  }
+}
+
+export function setAllIngredients(ingredients) {
+  return {
+    type: SET_ALL_INGREDIENTS,
+    payload: ingredients
+  }
+}
+
+export function addIngredientToPantry(usersPantry) {
+  return {
+    type: ADD_INGREDIENT_TO_PANTRY,
+    payload: usersPantry
+  }
+}
+
+export function deleteIngredientFromPantry(usersPantry) {
+  return {
+    type: DELETE_INGREDIENT_FROM_PANTRY,
+    payload: usersPantry
   }
 }

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { setRecipes } from "../Ducks/Reducer";
 
-export class Profile extends Component {
+export class Recipe extends Component {
   render() {
     const { recipes } = this.props;
     let mappedRecipes = recipes
@@ -47,4 +47,4 @@ const mapDispatchToProps = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Profile);
+)(Recipe);

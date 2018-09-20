@@ -31,3 +31,32 @@
   padding-top: 80px;
   padding-left: 90px;
 }
+
+.navbar{
+  background: rgb(13, 12, 15);
+  width: 100vw;
+  height: 6vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+}
+
+.navbar button{
+  background: rgb(13, 12, 15);
+  color: white;
+}
+
+.userName{
+  color: white;
+}
+
+.pantry{
+  display: flex;
+  justify-content: space-between
+}
+
+.allIngredients{
+  height: 80vh;
+  overflow: scroll;
+}

@@ -26,9 +26,6 @@ class Dashboard extends Component {
 
 
   render() {
-    console.log(this.props);
-
-    const user = this.props;
     const { recipes } = this.props
     console.log(recipes);
 
@@ -42,25 +39,7 @@ class Dashboard extends Component {
     return (
       <div>
         <div>
-          {user.name === "" ? (
-            <div>
-              <p>Please login</p>
-              <button>Login</button>
-            </div>
-          ) : user ? (
-            <div>
-              <div className="user-image-container">
-                <img src={user.picture} alt="User" />
-              </div>
 
-              <p>{user.name}</p>
-            </div>
-          ) : (
-                <div>
-                  <p>Please login</p>
-                  <button>Login</button>
-                </div>
-              )}
           <div>{mappedRecipes}</div>
         </div>
       </div>
