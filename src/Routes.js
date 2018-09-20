@@ -11,7 +11,6 @@ export default (
     <Route path="/dashboard" component={Dashboard} />
     <Route path="/profile" component={Profile} />
     <Route path="/recipe" component={Recipe} />
-
     <Route path="/pantry" component={Pantry} />
     <Route exact path="/" component={SignIn} />
   </Switch>

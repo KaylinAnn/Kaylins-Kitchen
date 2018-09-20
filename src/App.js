@@ -1,15 +1,16 @@
 import React, { Component } from "react";
 import "./App.css";
 import "./reset.css";
-import SignIn from "./components/SignIn";
 import Nav from "./components/Nav";
+import Routes from "./Routes";
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <SignIn />
+
         <Nav />
+        {Routes}
       </div>
     );
   }

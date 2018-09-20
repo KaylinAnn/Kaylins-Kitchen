@@ -1,25 +1,27 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { SetRecipes } from "../Ducks/Reducer";
-import { Link } from "react-router-dom";
+import { setRecipes } from "../Ducks/Reducer";
+import axios from 'axios'
 
 export class Profile extends Component {
+  componentDidMount() {
+    axios.get("api/myrecipes").then(res => {
+      const recipes = res.data;
+      this.props.setRecipes(recipes);
+    });
+  }
+
+
   render() {
     const { recipes } = this.props;
     let mappedRecipes = recipes
       ? recipes.map(recipe => {
-          console.log(recipe.recipe);
-
-          return (
-            <div>
-              <h2>{recipe.recipe.label}</h2>
-              <Link to="/recipe">
-                <img src={recipe.recipe.image} alt="Your Recipes" />
-              </Link>
-            </div>
-          );
-        })
-      : "No recipes saved";
+        return <div>
+          <div key={recipe.id}>{recipe.label}</div>
+          <img src={recipe.image} alt="recipe" />
+        </div>
+      })
+      : "No saved recipes.";
 
     return (
       <div>
@@ -31,14 +33,15 @@ export class Profile extends Component {
 }
 
 const mapStateToProps = state => {
-  const { recipes } = state;
+  const { recipes, user } = state;
   return {
-    recipes
+    recipes,
+    user
   };
 };
 
 const mapDispatchToProps = {
-  SetRecipes
+  setRecipes
 };
 export default connect(
   mapStateToProps,

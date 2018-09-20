@@ -38,7 +38,7 @@ app.get("/auth/callback", (req, res) => {
     const accessToken = accessTockenResponse.data.access_token;
     return axios.get(
       `https://${
-        process.env.REACT_APP_AUTH0_DOMAIN
+      process.env.REACT_APP_AUTH0_DOMAIN
       }/userinfo?access_token=${accessToken}`
     );
   }

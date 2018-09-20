@@ -1,4 +1,4 @@
 SELECT * FROM recipes
-where user_id = null
+where user_id is null
 ORDER BY RANDOM()
-LIMIT 4
+LIMIT 4;

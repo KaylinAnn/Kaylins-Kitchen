@@ -1,28 +1,28 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { SetRecipes } from "../Ducks/Reducer";
+import { setRecipes } from "../Ducks/Reducer";
 
 export class Profile extends Component {
   render() {
     const { recipes } = this.props;
     let mappedRecipes = recipes
       ? recipes.map(recipe => {
-          console.log(recipe.recipe);
+        console.log(recipe.recipe);
 
-          return (
-            <div>
-              <h2>{recipe.recipe.label}</h2>
-              <img src={recipe.recipe.image} alt="recipe" />
-              <a href={recipe.recipe.url}>Get Recipe Instructions here!</a>
+        return (
+          <div>
+            <h2>{recipe.recipe.label}</h2>
+            <img src={recipe.recipe.image} alt="recipe" />
+            <a href={recipe.recipe.url}>Get Recipe Instructions here!</a>
 
-              <ul>
-                {recipe.recipe.ingredientLines.map(ingredient => {
-                  return <div>{ingredient}</div>;
-                })}
-              </ul>
-            </div>
-          );
-        })
+            <ul>
+              {recipe.recipe.ingredientLines.map(ingredient => {
+                return <div>{ingredient}</div>;
+              })}
+            </ul>
+          </div>
+        );
+      })
       : "No recipes saved";
 
     return (
@@ -42,7 +42,7 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = {
-  SetRecipes
+  setRecipes
 };
 export default connect(
   mapStateToProps,
