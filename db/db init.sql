@@ -1,7 +1,15 @@
 create table ingredients(
 id serial primary key,
 name text not null
-)
+);
+
+create table user(
+  id serial primary key,
+  auth0id text,
+  name text,
+  email text,
+  picture text
+);
 
 create table user_pantry(
 user_id integer,
