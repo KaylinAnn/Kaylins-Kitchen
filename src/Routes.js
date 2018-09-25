@@ -10,7 +10,7 @@ export default (
   <Switch>
     <Route path="/dashboard" component={Dashboard} />
     <Route path="/profile" component={Profile} />
-    <Route path="/recipe" component={Recipe} />
+    <Route path="/recipe/:id" component={Recipe} />
     <Route path="/pantry" component={Pantry} />
     <Route exact path="/" component={SignIn} />
   </Switch>

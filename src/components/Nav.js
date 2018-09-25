@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import axios from 'axios'
+import axios from "axios";
 import { logIn, logOut } from "../Ducks/Reducer";
 
 export class Nav extends Component {
@@ -12,12 +12,11 @@ export class Nav extends Component {
     });
   }
   render() {
-    const user = this.props
-    console.log(user);
+    const user = this.props;
 
     return (
-      <div className='navbar'>
-        <div className='userName'>Welcome, {user.name}!</div>
+      <div className="navbar">
+        <div className="userName">Welcome, {user.name}!</div>
         <Link to="/dashboard">
           <button>Home</button>
         </Link>

@@ -3,7 +3,6 @@
   background-size: cover;
   height: 100vh;
   width: 100vw;
-  
 }
 
 .loginBox {
@@ -15,7 +14,7 @@
   align-items: center;
   justify-content: center;
   margin: auto;
-  margin-top:250px;
+  margin-top: 250px;
 }
 
 .loginButton {
@@ -27,36 +26,35 @@
 .welcome {
   color: rgb(14, 151, 14);
   font-size: 70px;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: "Fauna One", serif;
   padding-top: 80px;
   padding-left: 90px;
 }
 
-.navbar{
+.navbar {
   background: rgb(13, 12, 15);
   width: 100vw;
   height: 6vh;
   display: flex;
   justify-content: space-between;
   align-items: center;
-
 }
 
-.navbar button{
+.navbar button {
   background: rgb(13, 12, 15);
   color: white;
 }
 
-.userName{
+.userName {
   color: white;
 }
 
-.pantry{
+.pantry {
   display: flex;
-  justify-content: space-between
+  justify-content: space-between;
 }
 
-.allIngredients{
+.allIngredients {
   height: 80vh;
   overflow: scroll;
 }
