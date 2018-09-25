@@ -38,13 +38,15 @@ app.get("/auth/callback", (req, res) => {
     const accessToken = accessTockenResponse.data.access_token;
     return axios.get(
       `https://${
-      process.env.REACT_APP_AUTH0_DOMAIN
+        process.env.REACT_APP_AUTH0_DOMAIN
       }/userinfo?access_token=${accessToken}`
     );
   }
 
   function storeUserInfoInDatabase(response) {
     const auth0Id = response.data.sub;
+    console.log(auth0Id);
+
     const db = req.app.get("db");
     return db
       .get_user_by_auth0_id(auth0Id)
@@ -52,7 +54,6 @@ app.get("/auth/callback", (req, res) => {
         if (users.length) {
           const user = users[0];
           req.session.user = user;
-          console.log("user", user);
 
           res.redirect("/dashboard");
         } else {
@@ -64,6 +65,9 @@ app.get("/auth/callback", (req, res) => {
           ];
           return db
             .create_user(userArray)
+            .then(() => {
+              return db.get_user_by_auth0_id(auth0Id);
+            })
             .then(newUser => {
               req.session.user = newUser;
               res.redirect("/dashboard");
@@ -113,6 +117,9 @@ app.get("/api/ingredients", controller.getAllIngredients);
 app.get("/api/myingredients", controller.getUsersIngredients);
 app.post("/api/myingredients", controller.createIngredients);
 app.delete("/api/myingredients/:id", controller.deleteIngredient);
+app.delete("/api/myrecipes/:id", controller.deleteRecipeFromUsersFavorites);
+app.post("/api/myrecipes", controller.addUserRecipe);
+app.get("/api/matchedrecipes", controller.getRecipesThatMatchUsersPantry);
 
 const PORT = 4000;
 app.listen(PORT, () => {

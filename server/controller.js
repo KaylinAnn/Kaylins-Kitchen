@@ -11,7 +11,6 @@ module.exports = {
       });
   },
 
-
   getUsersRecipes: (req, res) => {
     const db = req.app.get("db");
     db.get_users_recipes(req.session.user.id)
@@ -70,7 +69,70 @@ module.exports = {
       })
       .catch(error => {
         console.log(error);
-        res.status(500).send(error);
+        res.status(500).send("error");
+      });
+  },
+
+  deleteRecipeFromUsersFavorites: (req, res) => {
+    const db = req.app.get("db");
+    db.delete_recipe_from_users_favorites([req.session.user.id, req.params.id])
+      .then(recipes => {
+        res.status(200).send(recipes);
+      })
+      .catch(error => {
+        console.log(error);
+        res.status(500).send("error");
+      });
+  },
+
+  addUserRecipe: (req, res) => {
+    const db = req.app.get("db");
+    console.log(req.body);
+
+    db.create_user_recipe([
+      req.body.label,
+      req.session.user.id,
+      req.body.url,
+      req.body.image,
+      req.body.notes
+    ])
+      .then(recipes => {
+        console.log("RECIPES", recipes);
+
+        res.status(200).send(recipes);
+      })
+      .catch(error => {
+        console.log(error);
+        res.status(500).send("error");
+      });
+  },
+
+  getRecipesThatMatchUsersPantry: (req, res) => {
+    const db = req.app.get("db");
+    db.get_users_matched_recipes(req.session.user.id)
+      .then(matchedRecipes => {
+        let reduced = matchedRecipes.reduce((prev, curr) => {
+          let { id, label, url, image, notes, name } = curr;
+          prev[id] = prev[id] || {
+            id,
+            label,
+            url,
+            image,
+            notes,
+            ingredients: []
+          };
+          prev[id].ingredients.push({
+            name,
+            hasIngredient: Boolean(curr.case)
+          });
+          return prev;
+        }, {});
+        let recipeArray = Object.keys(reduced).map(id => reduced[id]);
+        res.status(200).send(recipeArray);
+      })
+      .catch(error => {
+        console.log(error);
+        res.status(500).send("error");
       });
   }
 };
