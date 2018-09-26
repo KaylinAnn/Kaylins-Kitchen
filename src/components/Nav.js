@@ -13,24 +13,29 @@ export class Nav extends Component {
   }
   render() {
     const user = this.props;
+    console.log(user);
+    const login =
+      user.name === "" || !user ? (
+        <div />
+      ) : (
+        <div className="navbar">
+          <div className="userName">Welcome, {user.name}!</div>
+          <Link to="/dashboard">
+            <button>Home</button>
+          </Link>
+          <Link to="/profile">
+            <button>Profile</button>
+          </Link>
+          <Link to="/">
+            <button>LogOut</button>
+          </Link>
+          <Link to="/pantry">
+            <button>Pantry</button>
+          </Link>
+        </div>
+      );
 
-    return (
-      <div className="navbar">
-        <div className="userName">Welcome, {user.name}!</div>
-        <Link to="/dashboard">
-          <button>Home</button>
-        </Link>
-        <Link to="/profile">
-          <button>Profile</button>
-        </Link>
-        <Link to="/">
-          <button>LogOut</button>
-        </Link>
-        <Link to="/pantry">
-          <button>Pantry</button>
-        </Link>
-      </div>
-    );
+    return <div>{login}</div>;
   }
 }
 
