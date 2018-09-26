@@ -1,4 +1,14 @@
+const axios = require("axios");
 module.exports = {
+  readRandomDrinkAPI: (req, res) => {
+    axios
+      .get("https://www.thecocktaildb.com/api/json/v1/1/random.php")
+      .then(response => {
+        const drink = response.data;
+        res.status(200).send(drink);
+      });
+  },
+
   getRandomFourRecipes: (req, res) => {
     const db = req.app.get("db");
     db.get_four_random_recipes()

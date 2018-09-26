@@ -112,6 +112,7 @@ massive(process.env.CONNECTION_STRING)
   });
 
 app.get("/api/myrecipes", controller.getUsersRecipes);
+app.get("/api/drink", controller.readRandomDrinkAPI);
 app.get("/api/recipes", controller.getRandomFourRecipes);
 app.get("/api/ingredients", controller.getAllIngredients);
 app.get("/api/myingredients", controller.getUsersIngredients);
