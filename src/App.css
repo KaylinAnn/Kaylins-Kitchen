@@ -6,6 +6,7 @@ body {
   background-image: url("./images/ingredients-498199_1280.jpg");
   background-size: cover;
   height: 100vh;
+  width: 99vw;
 }
 
 .loginBox {
@@ -35,6 +36,7 @@ body {
   color: rgb(46, 46, 46);
   font-size: 1em;
   font-weight: bold;
+  text-align: center;
 }
 
 .welcome {
@@ -54,11 +56,13 @@ body {
 }
 
 .navbar button {
+  margin: auto 20px;
   background: rgb(13, 12, 15);
   color: white;
 }
 
 .userName {
+  margin-left: 20px;
   color: white;
 }
 
@@ -77,6 +81,11 @@ body {
   padding-top: 90px;
 }
 
+.profile {
+  background: rgb(236, 236, 236);
+  padding-top: 90px;
+}
+
 .four-recipes {
   height: 400px;
   background: #fff;
@@ -86,18 +95,107 @@ body {
   justify-content: space-between;
 }
 
-.dashboard-recipes {
+.savedRecipes {
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.favoritesBox {
+  width: 99vw;
+}
+
+.favorites {
+  height: 20px;
+  width: 100px;
+  background: #ffda08;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 10px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  font-size: 14px;
+}
+
+.recipes {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  padding-bottom: 90px;
+  padding-bottom: 200px;
+}
+
+.deleteButton {
+  margin-top: -15px;
+  background: #ffda08;
+  width: 300px;
+  font-size: 14px;
+}
+
+.ingredient-name-has {
+  display: flex;
+}
+
+.ingredients-name {
+  margin-right: 20px;
+}
+
+.matched-text {
+  height: 20px;
+  width: 165px;
+  background: #ffda08;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 0;
+  padding-top: 10px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  font-size: 14px;
+}
+
+.mappedRecipes {
+  display: inline-block;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.profile-container {
+  background: rgb(248, 248, 248);
+}
+
+.mapped-recipes-container {
+  background: rgb(248, 248, 248);
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  padding-top: 50px;
+}
+
+.mapped-recipes-container > * + * {
+  margin: 0 30px;
 }
 
 .recipe-label {
   color: rgb(46, 46, 46);
   font-size: 1em;
   font-weight: bold;
-  margin: auto;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 40px;
+  text-align: center;
+}
+
+.recipe-label-fav {
+  color: rgb(46, 46, 46);
+  font-size: 1em;
+  font-weight: bold;
+  margin: 20px auto;
+  text-align: center;
 }
 
 .video {
@@ -140,7 +238,6 @@ body {
 
 .drinkInfo {
   display: flex;
-  flex-flow: wrap;
   justify-content: center;
   align-items: space-between;
 }
@@ -148,4 +245,162 @@ body {
 .drinkInstructions {
   max-width: 400px;
   text-align: center;
+}
+
+.x-pic {
+  width: 14px;
+  height: 14px;
+}
+
+.check-pic {
+  width: 15px;
+  height: 15px;
+}
+
+.single-recipe-img {
+}
+
+.pantry {
+  margin: 0 auto;
+  background: #eeeeee;
+  height: 100vh;
+  width: 70vw;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.arrows {
+  display: flex;
+  flex-direction: column;
+}
+
+.arrows > img {
+  height: 150px;
+  width: 250px;
+}
+
+.right-arrow {
+  transform: rotate(180deg);
+}
+
+@media only screen and (max-width: 600px) {
+  body {
+    width: 411px;
+    height: 731px;
+  }
+
+  .loginPage {
+    background-image: url("./images/ingredients-498199_1280.jpg");
+    background-size: cover;
+    height: 731px;
+    width: 411px;
+  }
+
+  .loginBox {
+    background: white;
+    border-radius: 3%;
+    width: 40vw;
+    height: 20vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    margin: auto;
+    margin-top: 200px;
+  }
+
+  .loginButton {
+    background: #ffda08;
+    width: 30vw;
+    height: 10vw;
+    border-radius: 5%;
+    font-size: 1em;
+    color: white;
+    font-weight: bold;
+  }
+
+  .signInMessage {
+    color: rgb(46, 46, 46);
+    font-size: 0.75em;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  .welcome {
+    color: #ffda08;
+    font-size: 50px;
+    padding-top: 50px;
+  }
+
+  .userName {
+    display: none;
+  }
+
+  .recipes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    padding-bottom: 200px;
+  }
+
+  .four-recipes {
+    margin: 10px 0px;
+  }
+
+  .video {
+    margin: 0, auto;
+    background: rgb(255, 255, 255);
+  }
+
+  .iframe {
+    height: 35vh;
+    padding: 100px 0px;
+    border: none;
+  }
+
+  .drink {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+  .drinkName {
+    text-align: center;
+    font-weight: bolder;
+    font-size: 2em;
+  }
+
+  .drinkPic {
+    max-width: 300px;
+    max-height: 400px;
+    padding: 50px;
+  }
+
+  .drinkName-Info {
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+  .drinkInfo {
+    display: flex;
+    justify-content: center;
+    align-items: space-between;
+    padding: 10px 10px;
+  }
+
+  .drinkInstructions {
+    max-width: 400px;
+    text-align: center;
+    /* margin-right: 10px; */
+  }
+
+  .savedRecipes {
+    margin: 10px 0;
+  }
 }

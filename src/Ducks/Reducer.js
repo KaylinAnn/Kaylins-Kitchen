@@ -20,6 +20,7 @@ const ADD_INGREDIENT_TO_PANTRY = "ADD_INGREDIENT_TO_PANTRY";
 const DELETE_INGREDIENT_FROM_PANTRY = "DELETE_INGREDIENT_FROM_PANTRY";
 const ADD_RECIPE_TO_FAVORITES = "ADD_RECIPE_TO_FAVORITES";
 const DELETE_RECIPE_FROM_USERS_FAVORITES = "DELETE_RECIPE_FROM_USERS_FAVORITES";
+const UPDATE_RECIPE_NOTES = "UPDATE_RECIPE_NOTES";
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
@@ -40,6 +41,8 @@ export default function reducer(state = initialState, action) {
     case DELETE_RECIPE_FROM_USERS_FAVORITES:
       return { ...state, recipes: action.payload };
     case ADD_RECIPE_TO_FAVORITES:
+      return { ...state, recipes: action.payload };
+    case UPDATE_RECIPE_NOTES:
       return { ...state, recipes: action.payload };
     default:
       return state;
@@ -105,5 +108,12 @@ export function addRecipeToFavorites(recipes) {
   return {
     type: ADD_RECIPE_TO_FAVORITES,
     payload: recipes
+  };
+}
+
+export function updateRecipeNotes(recipe) {
+  return {
+    type: UPDATE_RECIPE_NOTES,
+    payload: recipe
   };
 }

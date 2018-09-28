@@ -51,9 +51,7 @@ class Dashboard extends Component {
         <div className="four-recipes">
           <div className="recipe-label">{recipe.label}</div>
           <Link to={`/recipe/${recipe.id}`}>
-            <a href={`/recipe/${recipe.id}`}>
-              <img src={recipe.image} alt="recipe" />
-            </a>
+            <img src={recipe.image} alt="recipe" />
           </Link>
         </div>
       );
@@ -108,7 +106,7 @@ class Dashboard extends Component {
     return (
       <div className="dashboard">
         <div>
-          <div className="dashboard-recipes">{mappedRecipes}</div>
+          <div className="recipes">{mappedRecipes}</div>
         </div>
         <div className="video">
           <iframe

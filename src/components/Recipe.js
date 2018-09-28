@@ -1,24 +1,46 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { setRecipes, addRecipeToFavorites } from "../Ducks/Reducer";
+import {
+  setRecipes,
+  addRecipeToFavorites,
+  updateRecipeNotes
+} from "../Ducks/Reducer";
 import axios from "axios";
 
 export class Recipe extends Component {
   constructor(props) {
     super(props);
 
-    const recipeId = props.match.params.id;
-
     const { recipes } = this.props;
+    const recipeId = this.props.match.params.id;
 
     const recipe = recipes.find(e => {
       return e.id == recipeId;
     });
 
     this.state = {
+      recipes: [],
       recipe: recipe
     };
   }
+
+  componentDidMount() {
+    axios.get("/api/allrecipes").then(res => {
+      console.log(res.data);
+
+      const recipeId = this.props.match.params.id;
+
+      const recipe = res.data.find(e => {
+        return e.id == recipeId;
+      });
+
+      this.setState({
+        recipes: res.data,
+        recipe: recipe
+      });
+    });
+  }
+
   addRecipeToFavorites() {
     const { label, url, image, notes } = this.state.recipe;
     axios.post("/api/myrecipes", { label, url, image, notes }).then(res => {
@@ -26,15 +48,38 @@ export class Recipe extends Component {
     });
   }
 
+  updateRecipeNotes() {
+    const { id } = this.state.recipe;
+    console.log(this.refs);
+
+    axios
+      .patch(`/api/recipe/${id}`, {
+        notes: this.refs.notes.value,
+        id: id
+      })
+      .then(res => {
+        this.props.updateRecipeNotes(res.data);
+      });
+  }
+
   render() {
-    const recipe = this.state.recipe;
+    const { recipe } = this.state;
+    console.log(recipe);
+    // console.log(recipes);
+    // const matchedrecipe = recipes.map(e => {
+    //   e.find(e => {
+    //     return e.id == props.match.params.id;
+    //   });
+    // });
+
+    // console.log(matchedrecipe);
 
     const recipeNotes =
-      recipe.user_id !== null ? (
+      recipe && recipe.user_id !== null ? (
         <div>
           {recipe.notes}
           <input ref="notes" type="text" />
-          <button>Add note</button>
+          <button onClick={() => this.updateRecipeNotes()}>Add note</button>
         </div>
       ) : (
         ""
@@ -42,16 +87,29 @@ export class Recipe extends Component {
 
     return (
       <div>
-        <h1>{recipe.label}</h1>
-        <button onClick={() => this.addRecipeToFavorites()}>
-          Add to Favorites
-        </button>
-        <img src={recipe.image} alt="yuuuummmmm" />
-        <div>
-          <a target="_blank" href={recipe.url}>
-            Click here for full recipe!
-          </a>
-        </div>
+        {recipe ? (
+          <div className="single-recipe">
+            <h1 className="single-recipe-name">{recipe.label}</h1>
+            <button
+              className="add-to-recipes"
+              onClick={() => this.addRecipeToFavorites()}
+            >
+              Add to Favorites
+            </button>
+            <img
+              className="single-recipe-img"
+              src={recipe.image}
+              alt="yuuuummmmm"
+            />
+            <div>
+              <a target="_blank" href={recipe.url}>
+                Click here for full recipe!
+              </a>
+            </div>
+          </div>
+        ) : (
+          "no recipe here"
+        )}
         <div>{recipeNotes}</div>
       </div>
     );
@@ -67,7 +125,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = {
   setRecipes,
-  addRecipeToFavorites
+  addRecipeToFavorites,
+  updateRecipeNotes
 };
 export default connect(
   mapStateToProps,

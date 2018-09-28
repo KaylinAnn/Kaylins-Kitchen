@@ -1,3 +1,3 @@
 update recipes
-set notes = $2
-where user_id = $1
+set notes = $1
+where id = $2

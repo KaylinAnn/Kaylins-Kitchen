@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { connect } from "react-redux";
+import Arrow from "../images/left.png";
 import {
   setUsersPantry,
   setAllIngredients,
@@ -15,46 +16,34 @@ export class Pantry extends Component {
   }
 
   getUsersPantry() {
-    axios.get("api/myingredients").then(res => {
+    return axios.get("api/myingredients").then(res => {
       const usersPantry = res.data;
       this.props.setUsersPantry(usersPantry);
     });
   }
 
   getAllIngredients() {
-    axios.get("api/ingredients").then(res => {
+    return axios.get("api/ingredients").then(res => {
       const ingredients = res.data;
       this.props.setAllIngredients(ingredients);
     });
   }
 
   addIngredientToPantry(ingredId) {
-    axios.post("api/myingredients", { id: ingredId }).then(res => {
+    return axios.post("api/myingredients", { id: ingredId }).then(res => {
       this.props.addIngredientToPantry(res.data);
       this.getUsersPantry();
     });
   }
 
   deleteIngredientFromPantry(ingredId) {
-    axios.delete(`api/myingredients/${ingredId}`).then(res => {
+    return axios.delete(`api/myingredients/${ingredId}`).then(res => {
       this.props.deleteIngredientFromPantry(res.data);
       this.getUsersPantry();
     });
   }
 
   render() {
-    const { ingredients } = this.props;
-    let mappedIngredients = ingredients.map(ingred => {
-      return (
-        <div>
-          <div key={ingred.id}>{ingred.name}</div>
-          <button onClick={() => this.addIngredientToPantry(ingred.id)}>
-            add
-          </button>
-        </div>
-      );
-    });
-
     const { usersPantry } = this.props;
     let mappedPantry = usersPantry
       ? usersPantry.map(item => {
@@ -69,13 +58,42 @@ export class Pantry extends Component {
         })
       : "To start, add ingredient to Pantry";
 
-    return (
-      <div className="pantry">
-        <div className="pantryItems">
-          <h1>Pantry</h1>
-          {mappedPantry}
+    const { ingredients } = this.props;
+
+    let filteredIngredients = usersPantry
+      ? ingredients.filter(ingred => {
+          return (
+            usersPantry.filter(pantryIngred => {
+              return pantryIngred.ingredient_id === ingred.id;
+            }).length === 0
+          );
+        })
+      : ingredients;
+
+    let mappedIngredients = filteredIngredients.map(ingred => {
+      return (
+        <div>
+          <div key={ingred.id}>{ingred.name}</div>
+          <button onClick={() => this.addIngredientToPantry(ingred.id)}>
+            add
+          </button>
         </div>
-        <div className="allIngredients">{mappedIngredients}</div>
+      );
+    });
+
+    return (
+      <div>
+        <div className="pantry">
+          <div className="pantryItems">
+            <h1>Pantry</h1>
+            {mappedPantry}
+          </div>
+          <div className="arrows">
+            <img className="left-arrow" src={Arrow} alt="switch" />
+            <img className="right-arrow" src={Arrow} alt="switch" />
+          </div>
+          <div className="allIngredients">{mappedIngredients}</div>
+        </div>
       </div>
     );
   }

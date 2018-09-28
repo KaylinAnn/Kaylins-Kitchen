@@ -112,11 +112,13 @@ massive(process.env.CONNECTION_STRING)
   });
 
 app.get("/api/myrecipes", controller.getUsersRecipes);
+app.get("/api/allrecipes", controller.getAllRecipes);
 app.get("/api/drink", controller.readRandomDrinkAPI);
 app.get("/api/recipes", controller.getRandomFourRecipes);
 app.get("/api/ingredients", controller.getAllIngredients);
 app.get("/api/myingredients", controller.getUsersIngredients);
 app.post("/api/myingredients", controller.createIngredients);
+app.patch("/api/recipe/:id", controller.updateRecipeNotes);
 app.delete("/api/myingredients/:id", controller.deleteIngredient);
 app.delete("/api/myrecipes/:id", controller.deleteRecipeFromUsersFavorites);
 app.post("/api/myrecipes", controller.addUserRecipe);

@@ -9,6 +9,33 @@ module.exports = {
       });
   },
 
+  updateRecipeNotes: (req, res) => {
+    const db = req.app.get("db");
+    console.log(req.body);
+
+    db.update_recipe_notes([req.body.notes, req.body.id])
+      .then(recipe => {
+        res.status(200).send(recipe);
+      })
+      .catch(error => {
+        console.log(error);
+
+        res.status(500).send("error");
+      });
+  },
+
+  getAllRecipes: (req, res) => {
+    const db = req.app.get("db");
+    db.get_all_recipes()
+      .then(recipes => {
+        res.status(200).send(recipes);
+      })
+      .catch(error => {
+        console.log(error);
+        res.status(500).send("unexpected error");
+      });
+  },
+
   getRandomFourRecipes: (req, res) => {
     const db = req.app.get("db");
     db.get_four_random_recipes()
@@ -97,7 +124,6 @@ module.exports = {
 
   addUserRecipe: (req, res) => {
     const db = req.app.get("db");
-    console.log(req.body);
 
     db.create_user_recipe([
       req.body.label,
@@ -107,8 +133,6 @@ module.exports = {
       req.body.notes
     ])
       .then(recipes => {
-        console.log("RECIPES", recipes);
-
         res.status(200).send(recipes);
       })
       .catch(error => {
@@ -119,10 +143,11 @@ module.exports = {
 
   getRecipesThatMatchUsersPantry: (req, res) => {
     const db = req.app.get("db");
-    db.get_users_matched_recipes(req.session.user.id)
+    db.get_users_matched_recipes(3)
       .then(matchedRecipes => {
         let reduced = matchedRecipes.reduce((prev, curr) => {
           let { id, label, url, image, notes, name } = curr;
+
           prev[id] = prev[id] || {
             id,
             label,
@@ -137,7 +162,8 @@ module.exports = {
           });
           return prev;
         }, {});
-        let recipeArray = Object.keys(reduced).map(id => reduced[id]);
+        let recipeArray = Object.keys(reduced).map(key => reduced[key]);
+
         res.status(200).send(recipeArray);
       })
       .catch(error => {

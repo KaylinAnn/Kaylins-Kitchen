@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import { setRecipes, deleteRecipeFromUsersFavorites } from "../Ducks/Reducer";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import check from "../images/check.png";
+import x from "../images/x.png";
 
 export class Profile extends Component {
   constructor(props) {
@@ -43,17 +45,18 @@ export class Profile extends Component {
     let mappedFavoriteRecipes = recipes
       ? recipes.map(recipe => {
           return (
-            <div>
-              <div key={recipe.id}>{recipe.label}</div>
+            <div className="savedRecipes">
+              <div className="recipe-label" key={recipe.id}>
+                {recipe.label}
+              </div>
               <Link to={`/recipe/${recipe.id}`}>
-                <a href={`/recipe/${recipe.id}`}>
-                  <img src={recipe.image} alt="recipe" />
-                </a>
+                <img src={recipe.image} alt="recipe" />
               </Link>
               <button
+                className="deleteButton"
                 onClick={() => this.deleteRecipeFromUsersFavorites(recipe.id)}
               >
-                delete
+                REMOVE
               </button>
             </div>
           );
@@ -63,22 +66,30 @@ export class Profile extends Component {
     let mappedMatchedRecipes = matchedRecipes
       ? matchedRecipes.map(recipe => {
           return (
-            <div>
-              <div key={recipe.label}>{recipe.label}</div>
-              <Link to={`/recipe/${recipe.id}`}>
-                <a href={`/recipe/${recipe.id}`}>
+            <div className="mappedRecipes">
+              <div className="mappedRecipe">
+                <div className="recipe-label-fav" key={recipe.label}>
+                  {recipe.label}
+                </div>
+                <Link to={`/recipe/${recipe.id}`}>
                   <img src={recipe.image} alt="recipe" />
-                </a>
-              </Link>
-              <div>
-                {recipe.ingredients.map(e => {
-                  return (
-                    <div>
-                      <div>{e.name}</div>
-                      <div>{e.hasIngredient === true ? "yes" : "no"}</div>
-                    </div>
-                  );
-                })}
+                </Link>
+                <div>
+                  {recipe.ingredients.map(e => {
+                    return (
+                      <div className="ingredient-name-has">
+                        <div className="ingredients-name">
+                          {e.hasIngredient === true ? (
+                            <img className="check-pic" src={check} alt="yes" />
+                          ) : (
+                            <img className="x-pic" src={x} alt="no" />
+                          )}
+                        </div>
+                        <div>{e.name}</div>
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
             </div>
           );
@@ -86,14 +97,16 @@ export class Profile extends Component {
       : "No Matched Recipes. Please check your Pantry.";
 
     return (
-      <div>
+      <div className="profile">
         <div>
-          <h1>Favorites</h1>
-          <div>{mappedFavoriteRecipes}</div>
+          <div className="favoritesBox">
+            <h1 className="favorites">FAVORITES</h1>
+          </div>
+          <div className="recipes">{mappedFavoriteRecipes}</div>
         </div>
-        <div>
-          <h1>Your Matched Recipes</h1>
-          <div>{mappedMatchedRecipes}</div>
+        <div className="profile-container">
+          <h1 className="matched-text">MATCHED RECIPES</h1>
+          <div className="mapped-recipes-container">{mappedMatchedRecipes}</div>
         </div>
       </div>
     );
