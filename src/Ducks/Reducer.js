@@ -27,7 +27,7 @@ export default function reducer(state = initialState, action) {
     case LOGGED_IN:
       return { ...state, user: action.payload };
     case LOGGED_OUT:
-      return { ...state, user: null };
+      return { ...state, user: action.payload };
     case SET_USER_PANTRY:
       return { ...state, usersPantry: action.payload };
     case SET_RECIPES:
@@ -58,7 +58,14 @@ export function logIn(user) {
 
 export function logOut() {
   return {
-    type: LOGGED_OUT
+    type: LOGGED_OUT,
+    payload: {
+      id: "",
+      auth0id: "",
+      name: "",
+      email: "",
+      picture: ""
+    }
   };
 }
 

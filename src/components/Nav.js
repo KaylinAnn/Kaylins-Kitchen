@@ -11,11 +11,16 @@ export class Nav extends Component {
       this.props.logIn(user);
     });
   }
+
+  logOut() {
+    this.props.logOut();
+  }
+
   render() {
     const user = this.props;
-    console.log(user);
+
     const login =
-      user.name === "" || !user ? (
+      !user || user.id === "" ? (
         <div />
       ) : (
         <div className="navbar">
@@ -26,11 +31,17 @@ export class Nav extends Component {
           <Link to="/profile">
             <button>Profile</button>
           </Link>
-          <Link to="/">
-            <button>LogOut</button>
-          </Link>
           <Link to="/pantry">
             <button>Pantry</button>
+          </Link>
+          <Link to="/">
+            <button
+              onClick={() => {
+                this.logOut();
+              }}
+            >
+              LogOut
+            </button>
           </Link>
         </div>
       );

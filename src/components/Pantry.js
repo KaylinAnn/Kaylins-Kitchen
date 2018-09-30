@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import axios from "axios";
 import { connect } from "react-redux";
 import Arrow from "../images/left.png";
+import greenArrow from "../images/arrow-green.png";
+import redArrow from "../images/arrow-red.png";
 import {
   setUsersPantry,
   setAllIngredients,
@@ -45,18 +47,24 @@ export class Pantry extends Component {
 
   render() {
     const { usersPantry } = this.props;
-    let mappedPantry = usersPantry
-      ? usersPantry.map(item => {
-          return (
-            <div>
-              <div key={item.id}>{item.name}</div>
-              <button onClick={() => this.deleteIngredientFromPantry(item.id)}>
-                delete
-              </button>
-            </div>
-          );
-        })
-      : "To start, add ingredient to Pantry";
+
+    let mappedPantry =
+      usersPantry.length == 0
+        ? "To start, Add Ingredient to Pantry"
+        : usersPantry.map(item => {
+            return (
+              <div key={item.id}>
+                <div>{item.name}</div>
+                <button className="button-container">
+                  <img
+                    className="delete-from-pantry-btn"
+                    onClick={() => this.deleteIngredientFromPantry(item.id)}
+                    src={redArrow}
+                  />
+                </button>
+              </div>
+            );
+          });
 
     const { ingredients } = this.props;
 
@@ -72,27 +80,38 @@ export class Pantry extends Component {
 
     let mappedIngredients = filteredIngredients.map(ingred => {
       return (
-        <div>
+        <div key={ingred.id}>
           <div key={ingred.id}>{ingred.name}</div>
-          <button onClick={() => this.addIngredientToPantry(ingred.id)}>
-            add
+          <button className="button-container">
+            <img
+              className="add-button"
+              onClick={() => this.addIngredientToPantry(ingred.id)}
+              src={greenArrow}
+            />
           </button>
         </div>
       );
     });
 
     return (
-      <div>
+      <div className="pantry-body">
         <div className="pantry">
-          <div className="pantryItems">
-            <h1>Pantry</h1>
-            {mappedPantry}
+          <div className="pantryItems-container">
+            <h1 className="pantry-headers">Your Pantry</h1>
+            <div className="pantryItems">
+              <div className="scrollbar">{mappedPantry}</div>
+            </div>
           </div>
-          <div className="arrows">
+          {/* <div className="arrows">
             <img className="left-arrow" src={Arrow} alt="switch" />
             <img className="right-arrow" src={Arrow} alt="switch" />
+          </div> */}
+          <div className="ingredients-container">
+            <h1 className="pantry-headers">Ingredients</h1>
+            <div className="allIngredients">
+              <div className="scrollbar">{mappedIngredients}</div>
+            </div>
           </div>
-          <div className="allIngredients">{mappedIngredients}</div>
         </div>
       </div>
     );

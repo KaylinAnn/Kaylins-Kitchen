@@ -26,8 +26,6 @@ export class Recipe extends Component {
 
   componentDidMount() {
     axios.get("/api/allrecipes").then(res => {
-      console.log(res.data);
-
       const recipeId = this.props.match.params.id;
 
       const recipe = res.data.find(e => {
@@ -50,7 +48,6 @@ export class Recipe extends Component {
 
   updateRecipeNotes() {
     const { id } = this.state.recipe;
-    console.log(this.refs);
 
     axios
       .patch(`/api/recipe/${id}`, {
@@ -59,20 +56,13 @@ export class Recipe extends Component {
       })
       .then(res => {
         this.props.updateRecipeNotes(res.data);
+        this.componentDidMount();
+        this.refs.notes.value = "";
       });
   }
 
   render() {
     const { recipe } = this.state;
-    console.log(recipe);
-    // console.log(recipes);
-    // const matchedrecipe = recipes.map(e => {
-    //   e.find(e => {
-    //     return e.id == props.match.params.id;
-    //   });
-    // });
-
-    // console.log(matchedrecipe);
 
     const recipeNotes =
       recipe && recipe.user_id !== null ? (

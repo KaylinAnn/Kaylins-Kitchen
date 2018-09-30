@@ -42,59 +42,71 @@ export class Profile extends Component {
 
   render() {
     const { recipes } = this.props;
-    let mappedFavoriteRecipes = recipes
-      ? recipes.map(recipe => {
-          return (
-            <div className="savedRecipes">
-              <div className="recipe-label" key={recipe.id}>
-                {recipe.label}
-              </div>
-              <Link to={`/recipe/${recipe.id}`}>
-                <img src={recipe.image} alt="recipe" />
-              </Link>
-              <button
-                className="deleteButton"
-                onClick={() => this.deleteRecipeFromUsersFavorites(recipe.id)}
-              >
-                REMOVE
-              </button>
-            </div>
-          );
-        })
-      : "No saved recipes.";
-    const matchedRecipes = this.state.matchedRecipes;
-    let mappedMatchedRecipes = matchedRecipes
-      ? matchedRecipes.map(recipe => {
-          return (
-            <div className="mappedRecipes">
-              <div className="mappedRecipe">
-                <div className="recipe-label-fav" key={recipe.label}>
+
+    let mappedFavoriteRecipes =
+      recipes.length == 0
+        ? "No saved recipes."
+        : recipes.map(recipe => {
+            return (
+              <div key={recipe.id} className="savedRecipes">
+                <div className="recipe-label" key={recipe.id}>
                   {recipe.label}
                 </div>
                 <Link to={`/recipe/${recipe.id}`}>
                   <img src={recipe.image} alt="recipe" />
                 </Link>
-                <div>
-                  {recipe.ingredients.map(e => {
-                    return (
-                      <div className="ingredient-name-has">
-                        <div className="ingredients-name">
-                          {e.hasIngredient === true ? (
-                            <img className="check-pic" src={check} alt="yes" />
-                          ) : (
-                            <img className="x-pic" src={x} alt="no" />
-                          )}
+                <button
+                  class="example_e"
+                  className="button_cont"
+                  align="center"
+                  className="deleteButton"
+                  onClick={() => this.deleteRecipeFromUsersFavorites(recipe.id)}
+                >
+                  REMOVE
+                </button>
+              </div>
+            );
+          });
+
+    const matchedRecipes = this.state.matchedRecipes;
+
+    let mappedMatchedRecipes =
+      matchedRecipes.length === 0
+        ? "No Matched Recipes. Please Add Ingredients to Your Pantry."
+        : matchedRecipes.map(recipe => {
+            return (
+              <div className="mappedRecipes">
+                <div className="mappedRecipe">
+                  <div className="recipe-label-fav" key={recipe.label}>
+                    {recipe.label}
+                  </div>
+                  <Link to={`/recipe/${recipe.id}`}>
+                    <img src={recipe.image} alt="recipe" />
+                  </Link>
+                  <div>
+                    {recipe.ingredients.map(e => {
+                      return (
+                        <div className="ingredient-name-has">
+                          <div className="ingredients-name">
+                            {e.hasIngredient === true ? (
+                              <img
+                                className="check-pic"
+                                src={check}
+                                alt="yes"
+                              />
+                            ) : (
+                              <img className="x-pic" src={x} alt="no" />
+                            )}
+                          </div>
+                          <div>{e.name}</div>
                         </div>
-                        <div>{e.name}</div>
-                      </div>
-                    );
-                  })}
+                      );
+                    })}
+                  </div>
                 </div>
               </div>
-            </div>
-          );
-        })
-      : "No Matched Recipes. Please check your Pantry.";
+            );
+          });
 
     return (
       <div className="profile">

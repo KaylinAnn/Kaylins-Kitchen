@@ -14,7 +14,6 @@ class Dashboard extends Component {
   getUser() {
     axios.get("api/user-data").then(res => {
       const user = res.data;
-      console.log(user);
 
       this.props.logIn(user);
     });
@@ -30,7 +29,7 @@ class Dashboard extends Component {
   getDrink() {
     axios.get("api/drink").then(res => {
       const drink = res.data.drinks;
-      console.log(drink);
+
       this.setState({
         drink
       });
@@ -48,7 +47,7 @@ class Dashboard extends Component {
 
     let mappedRecipes = recipes.map(recipe => {
       return (
-        <div className="four-recipes">
+        <div key={recipe.id} className="four-recipes">
           <div className="recipe-label">{recipe.label}</div>
           <Link to={`/recipe/${recipe.id}`}>
             <img src={recipe.image} alt="recipe" />
@@ -59,7 +58,7 @@ class Dashboard extends Component {
 
     const drink = this.state.drink.map(e => {
       return (
-        <div className="drink">
+        <div key={e.strDrink} className="drink">
           <img className="drinkPic" src={e.strDrinkThumb} alt="drink pic" />
           <div className="drinkName-Info">
             <div className="drinkName">{e.strDrink}</div>

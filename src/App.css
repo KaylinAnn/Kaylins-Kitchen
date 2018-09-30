@@ -1,5 +1,6 @@
 body {
   font-family: "Fauna One", serif;
+  overflow: hidden;
 }
 
 .loginPage {
@@ -66,16 +67,6 @@ body {
   color: white;
 }
 
-.pantry {
-  display: flex;
-  justify-content: space-between;
-}
-
-.allIngredients {
-  height: 80vh;
-  overflow: scroll;
-}
-
 .dashboard {
   background: rgb(236, 236, 236);
   padding-top: 90px;
@@ -125,13 +116,6 @@ body {
   align-items: center;
   justify-content: space-evenly;
   padding-bottom: 200px;
-}
-
-.deleteButton {
-  margin-top: -15px;
-  background: #ffda08;
-  width: 300px;
-  font-size: 14px;
 }
 
 .ingredient-name-has {
@@ -257,31 +241,102 @@ body {
   height: 15px;
 }
 
-.single-recipe-img {
+button:focus {
+  border-color: #fafafa;
+}
+
+.deleteButton {
+  margin-top: -15px;
+  background: #ffda08;
+  width: 300px;
+  font-size: 14px;
+  border: none;
+}
+
+button:hover {
+  color: #353535 !important;
+  font-weight: 700 !important;
+  letter-spacing: 1px;
+  transition: all 0.3s ease 0s;
+}
+
+.pantry-body {
+  height: 94vh;
+  width: 100%;
+  background: #fafafa;
 }
 
 .pantry {
   margin: 0 auto;
-  background: #eeeeee;
-  height: 100vh;
+  background: #e7e7e7;
+  height: 100%;
   width: 70vw;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
 }
 
-.arrows {
+.ingredients-container {
   display: flex;
   flex-direction: column;
 }
 
-.arrows > img {
-  height: 150px;
-  width: 250px;
+.pantryItems-container {
+  display: flex;
+  flex-direction: column;
 }
 
-.right-arrow {
-  transform: rotate(180deg);
+.pantry-headers {
+  font-size: 1.6em;
+  text-align: center;
+  background: #e7e7e7;
+  color: #ccad00;
+  height: 40px;
+  padding-top: 15px;
+}
+
+.pantryItems {
+  text-align: center;
+  color: rgb(0, 0, 0);
+  background: #e7e7e7;
+  height: 80vh;
+  width: 13vw;
+  overflow: hidden;
+}
+
+.scrollbar {
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+  padding-right: 17px;
+  box-sizing: content-box;
+}
+
+.allIngredients {
+  text-align: center;
+  color: black;
+  background: #e7e7e7;
+  height: 80vh;
+  width: 13vw;
+  overflow: hidden;
+}
+
+.delete-from-pantry-btn {
+  height: 40px;
+  width: 20px;
+  transform: rotate(270deg);
+}
+
+.button-container {
+  background: rgba(255, 255, 255, 0);
+  height: 20px;
+  width: 40px;
+}
+
+.add-button {
+  height: 40px;
+  width: 20px;
+  transform: rotate(270deg);
 }
 
 @media only screen and (max-width: 600px) {
@@ -402,5 +457,17 @@ body {
 
   .savedRecipes {
     margin: 10px 0;
+  }
+
+  .pantry {
+    width: 100%;
+  }
+
+  .pantryItems {
+    width: auto;
+  }
+
+  .allIngredients {
+    width: auto;
   }
 }
