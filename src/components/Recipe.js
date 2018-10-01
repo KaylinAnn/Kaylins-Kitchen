@@ -15,7 +15,7 @@ export class Recipe extends Component {
     const recipeId = this.props.match.params.id;
 
     const recipe = recipes.find(e => {
-      return e.id == recipeId;
+      return Number(e.id) === Number(recipeId);
     });
 
     this.state = {
@@ -29,7 +29,7 @@ export class Recipe extends Component {
       const recipeId = this.props.match.params.id;
 
       const recipe = res.data.find(e => {
-        return e.id == recipeId;
+        return Number(e.id) === Number(recipeId);
       });
 
       this.setState({

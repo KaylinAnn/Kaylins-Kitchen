@@ -109,6 +109,7 @@ class Dashboard extends Component {
         </div>
         <div className="video">
           <iframe
+            title="FeaturedVideo"
             className="iframe"
             width="620"
             height="415"

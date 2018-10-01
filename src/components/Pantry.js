@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { connect } from "react-redux";
-import Arrow from "../images/left.png";
 import greenArrow from "../images/arrow-green.png";
 import redArrow from "../images/arrow-red.png";
 import {
@@ -49,7 +48,7 @@ export class Pantry extends Component {
     const { usersPantry } = this.props;
 
     let mappedPantry =
-      usersPantry.length == 0
+      usersPantry.length === 0
         ? "To start, Add Ingredient to Pantry"
         : usersPantry.map(item => {
             return (
@@ -57,6 +56,7 @@ export class Pantry extends Component {
                 <div>{item.name}</div>
                 <button className="button-container">
                   <img
+                    alt="delete button"
                     className="delete-from-pantry-btn"
                     onClick={() => this.deleteIngredientFromPantry(item.id)}
                     src={redArrow}
@@ -84,6 +84,7 @@ export class Pantry extends Component {
           <div key={ingred.id}>{ingred.name}</div>
           <button className="button-container">
             <img
+              alt="add button"
               className="add-button"
               onClick={() => this.addIngredientToPantry(ingred.id)}
               src={greenArrow}

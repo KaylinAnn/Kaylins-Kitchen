@@ -44,7 +44,7 @@ export class Profile extends Component {
     const { recipes } = this.props;
 
     let mappedFavoriteRecipes =
-      recipes.length == 0
+      recipes.length === 0
         ? "No saved recipes."
         : recipes.map(recipe => {
             return (
@@ -57,9 +57,8 @@ export class Profile extends Component {
                 </Link>
                 <button
                   class="example_e"
-                  className="button_cont"
+                  className="button_cont, deleteButton"
                   align="center"
-                  className="deleteButton"
                   onClick={() => this.deleteRecipeFromUsersFavorites(recipe.id)}
                 >
                   REMOVE
