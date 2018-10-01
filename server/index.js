@@ -4,6 +4,7 @@ const massive = require("massive");
 const session = require("express-session");
 const controller = require("./controller");
 const axios = require("axios");
+const path = require("path");
 
 require("dotenv").config();
 
@@ -123,6 +124,17 @@ app.delete("/api/myingredients/:id", controller.deleteIngredient);
 app.delete("/api/myrecipes/:id", controller.deleteRecipeFromUsersFavorites);
 app.post("/api/myrecipes", controller.addUserRecipe);
 app.get("/api/matchedrecipes", controller.getRecipesThatMatchUsersPantry);
+
+if (process.env.NODE_ENV === "production") {
+  console.log("Server running in production mode");
+  // if not handled, try static files
+  app.use(express.static(path.join(__dirname, "..", "build")));
+
+  // if no static files, send back index
+  app.get("*", function(req, res) {
+    res.sendFile(path.join(__dirname, "..", "build", "index.html"));
+  });
+}
 
 const PORT = 4000;
 app.listen(PORT, () => {
