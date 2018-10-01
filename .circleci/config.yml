@@ -14,7 +14,7 @@ jobs:
             sudo apt-get -y install python-pip python-dev
             sudo pip install awsebcli --upgrade
       - run:
-          name: Insalling node dependencies
+          name: Installing node dependencies
           command: npm i --production
       - run:
           name: Build production bundle
