@@ -5,6 +5,11 @@ body {
   font-family: "Fauna One", serif;
 }
 
+.App {
+  height: 100vh;
+  background: rgb(248, 248, 248);
+}
+
 .loginPage {
   background-image: url("./images/ingredients-498199_1280.jpg");
   background-size: cover;

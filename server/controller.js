@@ -143,7 +143,7 @@ module.exports = {
 
   getRecipesThatMatchUsersPantry: (req, res) => {
     const db = req.app.get("db");
-    db.get_users_matched_recipes(3)
+    db.get_users_matched_recipes(req.session.user.id)
       .then(matchedRecipes => {
         let reduced = matchedRecipes.reduce((prev, curr) => {
           let { id, label, url, image, notes, name } = curr;
