@@ -68,7 +68,12 @@ export class Recipe extends Component {
       recipe && recipe.user_id !== null ? (
         <div className="single-recipe-notes">
           {recipe.notes}
-          <input className="notes-input" ref="notes" type="text" />
+          <input
+            className="notes-input"
+            placeholder="Add personal recipe note"
+            ref="notes"
+            type="text"
+          />
           <button
             className="add-note-button"
             onClick={() => this.updateRecipeNotes()}
@@ -84,23 +89,24 @@ export class Recipe extends Component {
       <div className="single-recipe">
         <div className="single-recipe-container">
           {recipe ? (
-            <div className="single-recipe-container">
-              <h1 className="single-recipe-name">{recipe.label}</h1>
+            <div className="single-recipe-info">
+              <img
+                className="single-recipe-img"
+                src={recipe.image}
+                alt="yuuuummmmm"
+              />
               <div className="img-add-button-url">
-                <img
-                  className="single-recipe-img"
-                  src={recipe.image}
-                  alt="yuuuummmmm"
-                />
+                <h1 className="single-recipe-name">{recipe.label}</h1>
+
                 <div className="add-button-url">
                   <button
                     className="add-to-recipes"
                     onClick={() => this.addRecipeToFavorites()}
                   >
-                    Add to Favorites
+                    ADD TO FAVORITES
                   </button>
 
-                  <div>
+                  <div className="single-recipe-url">
                     <a target="_blank" href={recipe.url}>
                       Click here for full recipe!
                     </a>
@@ -111,7 +117,7 @@ export class Recipe extends Component {
           ) : (
             "no recipe here"
           )}
-          <div className="single-recipe-notes">{recipeNotes}</div>
+          <div>{recipeNotes}</div>
         </div>
       </div>
     );
