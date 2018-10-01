@@ -263,14 +263,14 @@ button:hover {
 .pantry-body {
   height: 94vh;
   width: 100%;
-  background: #fafafa;
+  background: #ffffff;
 }
 
 .pantry {
   margin: 0 auto;
-  background: #e7e7e7;
+  background: #faf7f7;
   height: 100%;
-  width: 70vw;
+  width: 85vw;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -279,29 +279,49 @@ button:hover {
 .ingredients-container {
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 .pantryItems-container {
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 .pantry-headers {
   font-size: 1.6em;
   text-align: center;
-  background: #e7e7e7;
-  color: #ccad00;
+  background: rgb(49, 49, 49);
+  color: #ffda08;
   height: 40px;
   padding-top: 15px;
 }
 
 .pantryItems {
+  width: 100%;
   text-align: center;
   color: rgb(0, 0, 0);
-  background: #e7e7e7;
   height: 80vh;
-  width: 13vw;
   overflow: hidden;
+  margin: 0 80px;
+}
+
+.ingredient {
+  display: flex;
+  height: 35px;
+  width: 100%;
+  background: #ffda087a;
+  margin: 10px 0;
+  border-radius: 15px;
+}
+
+.ingredient-pantry {
+  display: flex;
+  height: 35px;
+  width: 100%;
+  background: #ffda087a;
+  margin: 10px 0;
+  border-radius: 15px;
 }
 
 .scrollbar {
@@ -312,37 +332,62 @@ button:hover {
   box-sizing: content-box;
 }
 
+.food-name {
+  width: 100%;
+  padding-top: 5px;
+  text-align: center;
+  font-size: 20px;
+}
+
+.food-name-pantry {
+  width: 93%;
+  padding-top: 5px;
+  padding-left: 0px;
+  font-size: 20px;
+}
+
 .allIngredients {
+  width: 70%;
   text-align: center;
   color: black;
-  background: #e7e7e7;
   height: 80vh;
-  width: 13vw;
   overflow: hidden;
+  margin: 0 auto;
 }
 
-.delete-from-pantry-btn {
+/* .delete-from-pantry-btn {
   height: 40px;
   width: 20px;
   transform: rotate(270deg);
-}
+} */
+
+/* .add-button {
+  height: 40px;
+  width: 20px;
+  transform: rotate(270deg);
+} */
 
 .button-container {
-  background: rgba(255, 255, 255, 0);
-  height: 20px;
-  width: 40px;
+  padding-top: 7px;
+  height: 30px;
+  background: #ffda0800;
+  width: 25px;
+  margin-left: 0px;
 }
 
-.add-button {
-  height: 40px;
-  width: 20px;
-  transform: rotate(270deg);
+.button-container-pantry {
+  padding-top: 7px;
+  height: 30px;
+  background: #ffda0800;
+  width: 25px;
+  margin-right: 0px;
 }
 
 @media only screen and (max-width: 600px) {
   body {
     width: 411px;
     height: 731px;
+    overflow: auto;
   }
 
   .loginPage {

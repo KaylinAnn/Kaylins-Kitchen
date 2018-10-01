@@ -47,7 +47,6 @@ app.get("/auth/callback", (req, res) => {
 
   function storeUserInfoInDatabase(response) {
     const auth0Id = response.data.sub;
-    console.log(auth0Id);
 
     const db = req.app.get("db");
     return db

@@ -7,7 +7,7 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Install elastic beanstalk
+          name: Install elastic beanstalk cli
           working_directory: /
           command: |
             sudo apt-get -y -qq update

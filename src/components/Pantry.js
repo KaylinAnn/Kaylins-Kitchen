@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { connect } from "react-redux";
-import greenArrow from "../images/arrow-green.png";
-import redArrow from "../images/arrow-red.png";
+
 import {
   setUsersPantry,
   setAllIngredients,
@@ -52,14 +51,12 @@ export class Pantry extends Component {
         ? "To start, Add Ingredient to Pantry"
         : usersPantry.map(item => {
             return (
-              <div key={item.id}>
-                <div>{item.name}</div>
-                <button className="button-container">
-                  <img
-                    alt="delete button"
-                    className="delete-from-pantry-btn"
+              <div className="ingredient-pantry" key={item.id}>
+                <div className="food-name-pantry">{item.name}</div>
+                <button className="button-container-pantry">
+                  <i
+                    class="fas fa-arrow-alt-circle-right"
                     onClick={() => this.deleteIngredientFromPantry(item.id)}
-                    src={redArrow}
                   />
                 </button>
               </div>
@@ -80,16 +77,16 @@ export class Pantry extends Component {
 
     let mappedIngredients = filteredIngredients.map(ingred => {
       return (
-        <div key={ingred.id}>
-          <div key={ingred.id}>{ingred.name}</div>
+        <div className="ingredient" key={ingred.id}>
           <button className="button-container">
-            <img
-              alt="add button"
-              className="add-button"
+            <i
+              class="fas fa-arrow-alt-circle-left"
               onClick={() => this.addIngredientToPantry(ingred.id)}
-              src={greenArrow}
             />
           </button>
+          <div className="food-name" key={ingred.id}>
+            {ingred.name}
+          </div>
         </div>
       );
     });
@@ -97,16 +94,12 @@ export class Pantry extends Component {
     return (
       <div className="pantry-body">
         <div className="pantry">
-          <div className="pantryItems-container">
+          <div className="ingredients-container">
             <h1 className="pantry-headers">Your Pantry</h1>
-            <div className="pantryItems">
+            <div className="allIngredients">
               <div className="scrollbar">{mappedPantry}</div>
             </div>
           </div>
-          {/* <div className="arrows">
-            <img className="left-arrow" src={Arrow} alt="switch" />
-            <img className="right-arrow" src={Arrow} alt="switch" />
-          </div> */}
           <div className="ingredients-container">
             <h1 className="pantry-headers">Ingredients</h1>
             <div className="allIngredients">
