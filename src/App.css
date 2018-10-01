@@ -1,4 +1,6 @@
 body {
+  height: 100%;
+  width: 100%;
   font-family: "Fauna One", serif;
   overflow: hidden;
 }
@@ -7,7 +9,7 @@ body {
   background-image: url("./images/ingredients-498199_1280.jpg");
   background-size: cover;
   height: 100vh;
-  width: 99vw;
+  width: 100%;
 }
 
 .loginBox {
@@ -73,6 +75,7 @@ body {
 }
 
 .profile {
+  height: 100vh;
   background: rgb(236, 236, 236);
   padding-top: 90px;
 }
@@ -105,6 +108,19 @@ body {
   text-align: center;
   margin-left: auto;
   margin-right: auto;
+  padding-top: 8px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  font-size: 14px;
+}
+
+.featured {
+  height: 20px;
+  width: 170px;
+  background: #ffda08;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
   padding-top: 10px;
   font-weight: 600;
   letter-spacing: 1.5px;
@@ -112,11 +128,16 @@ body {
 }
 
 .recipes {
+  height: 50%;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
   padding-bottom: 200px;
 }
+
+/* .favorites-box-container {
+  height: 50%;
+} */
 
 .ingredient-name-has {
   display: flex;
@@ -147,6 +168,7 @@ body {
 }
 
 .profile-container {
+  height: 50%;
   background: rgb(248, 248, 248);
 }
 
@@ -154,6 +176,7 @@ body {
   background: rgb(248, 248, 248);
   justify-content: center;
   flex-wrap: wrap;
+  height: 100%;
   max-width: 1200px;
   margin: 0 auto;
   display: flex;
@@ -170,7 +193,7 @@ body {
   font-weight: bold;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 40px;
+  margin-top: 30px;
   text-align: center;
 }
 
@@ -246,7 +269,7 @@ button:focus {
 }
 
 .deleteButton {
-  margin-top: -15px;
+  margin-top: -30px;
   background: #ffda08;
   width: 300px;
   font-size: 14px;
@@ -383,18 +406,59 @@ button:hover {
   margin-right: 0px;
 }
 
+.single-recipe {
+  background: #faf7f7;
+  height: 100vh;
+}
+
+.single-recipe-container {
+  background: #fff;
+
+  width: 80%;
+  margin: 0 auto;
+}
+
+.single-recipe-name {
+  font-size: 30px;
+  text-align: center;
+  width: 100%;
+  padding-top: 50px;
+}
+
+.single-recipe-img {
+  width: 400px;
+  height: 400px;
+}
+
+.single-recipe-notes {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+}
+
+.img-add-button-url {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.add-button-url {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: space-between;
+}
+
 @media only screen and (max-width: 600px) {
   body {
-    width: 411px;
-    height: 731px;
     overflow: auto;
   }
 
   .loginPage {
     background-image: url("./images/ingredients-498199_1280.jpg");
     background-size: cover;
-    height: 731px;
-    width: 411px;
+    height: 100vh;
+    width: 100%;
   }
 
   .loginBox {

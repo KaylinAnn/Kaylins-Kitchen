@@ -105,6 +105,9 @@ class Dashboard extends Component {
     return (
       <div className="dashboard">
         <div>
+          <div className="favoritesBox">
+            <h1 className="featured">FEATURED RECIPES</h1>
+          </div>
           <div className="recipes">{mappedRecipes}</div>
         </div>
         <div className="video">
@@ -115,6 +118,9 @@ class Dashboard extends Component {
             height="415"
             src="https://www.youtube.com/embed/Z7mqj5stFMg?controls=0"
           />
+        </div>
+        <div className="favoritesBox">
+          <h1 className="featured">ENJOY A DRINK!</h1>
         </div>
         <div>{drink}</div>
       </div>

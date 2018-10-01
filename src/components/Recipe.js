@@ -66,41 +66,53 @@ export class Recipe extends Component {
 
     const recipeNotes =
       recipe && recipe.user_id !== null ? (
-        <div>
+        <div className="single-recipe-notes">
           {recipe.notes}
-          <input ref="notes" type="text" />
-          <button onClick={() => this.updateRecipeNotes()}>Add note</button>
+          <input className="notes-input" ref="notes" type="text" />
+          <button
+            className="add-note-button"
+            onClick={() => this.updateRecipeNotes()}
+          >
+            Add Note
+          </button>
         </div>
       ) : (
         ""
       );
 
     return (
-      <div>
-        {recipe ? (
-          <div className="single-recipe">
-            <h1 className="single-recipe-name">{recipe.label}</h1>
-            <button
-              className="add-to-recipes"
-              onClick={() => this.addRecipeToFavorites()}
-            >
-              Add to Favorites
-            </button>
-            <img
-              className="single-recipe-img"
-              src={recipe.image}
-              alt="yuuuummmmm"
-            />
-            <div>
-              <a target="_blank" href={recipe.url}>
-                Click here for full recipe!
-              </a>
+      <div className="single-recipe">
+        <div className="single-recipe-container">
+          {recipe ? (
+            <div className="single-recipe-container">
+              <h1 className="single-recipe-name">{recipe.label}</h1>
+              <div className="img-add-button-url">
+                <img
+                  className="single-recipe-img"
+                  src={recipe.image}
+                  alt="yuuuummmmm"
+                />
+                <div className="add-button-url">
+                  <button
+                    className="add-to-recipes"
+                    onClick={() => this.addRecipeToFavorites()}
+                  >
+                    Add to Favorites
+                  </button>
+
+                  <div>
+                    <a target="_blank" href={recipe.url}>
+                      Click here for full recipe!
+                    </a>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
-        ) : (
-          "no recipe here"
-        )}
-        <div>{recipeNotes}</div>
+          ) : (
+            "no recipe here"
+          )}
+          <div className="single-recipe-notes">{recipeNotes}</div>
+        </div>
       </div>
     );
   }

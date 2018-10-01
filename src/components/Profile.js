@@ -45,10 +45,16 @@ export class Profile extends Component {
 
     let mappedFavoriteRecipes =
       recipes.length === 0
-        ? "No saved recipes."
+        ? "Save your Favorite Recipes and veiw them here."
         : recipes.map(recipe => {
             return (
-              <div key={recipe.id} className="savedRecipes">
+              //       <div key={recipe.id} className="four-recipes">
+              //   <div className="recipe-label">{recipe.label}</div>
+              //   <Link to={`/recipe/${recipe.id}`}>
+              //     <img src={recipe.image} alt="recipe" />
+              //   </Link>
+              // </div>
+              <div key={recipe.id} className="four-recipes">
                 <div className="recipe-label" key={recipe.id}>
                   {recipe.label}
                 </div>
@@ -71,7 +77,7 @@ export class Profile extends Component {
 
     let mappedMatchedRecipes =
       matchedRecipes.length === 0
-        ? "No Matched Recipes. Please Add Ingredients to Your Pantry."
+        ? "No Matched Recipes. To start using Kaylin's Kitchen, please visit your pantry."
         : matchedRecipes.map(recipe => {
             return (
               <div className="mappedRecipes">
@@ -109,7 +115,7 @@ export class Profile extends Component {
 
     return (
       <div className="profile">
-        <div>
+        <div className="favorites-box-container">
           <div className="favoritesBox">
             <h1 className="favorites">FAVORITES</h1>
           </div>
