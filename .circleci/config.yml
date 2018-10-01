@@ -18,7 +18,7 @@ jobs:
           command: npm i --production
       - run:
           name: Build production bundle
-          command: npm build
+          command: npm run build
       - run:
           name: Deploy branch to elastic beanstalk
           command: eb deploy kaylins-kitchen-$CIRCLE_BRANCH
