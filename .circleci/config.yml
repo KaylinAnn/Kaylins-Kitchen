@@ -1,0 +1,33 @@
+version: 2
+jobs:
+  deploy:
+    docker:
+      - image: circleci/node:8.11
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - run:
+          name: Install elastic beanstalk
+          working_directory: /
+          command: |
+            sudo apt-get -y -qq update
+            sudo apt-get -y install python-pip python-dev
+            sudo pip install awsebcli --upgrade
+      - run:
+          name: Insalling node dependencies
+          command: npm i --production
+      - run:
+          name: Build production bundle
+          command: npm build
+      - run:
+          name: Deploy branch to elastic beanstalk
+          command: eb deploy kaylins-kitchen-$CIRCLE_BRANCH
+workflows:
+  version: 2
+  eb_deploy:
+    jobs:
+      - deploy:
+          filters:
+            branches:
+              only:
+                - master
