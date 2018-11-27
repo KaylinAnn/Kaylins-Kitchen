@@ -23,28 +23,28 @@ export class Nav extends Component {
       !user || user.id === "" ? (
         <div />
       ) : (
-        <div className="navbar">
-          <div className="userName">Welcome, {user.name}!</div>
-          <Link to="/dashboard">
-            <button>Home</button>
-          </Link>
-          <Link to="/profile">
-            <button>Profile</button>
-          </Link>
-          <Link to="/pantry">
-            <button>Pantry</button>
-          </Link>
-          <Link to="/">
-            <button
-              onClick={() => {
-                this.logOut();
-              }}
-            >
-              LogOut
+          <div className="navbar">
+            <div className="userName">Welcome, {user.name}!</div>
+            <Link to="/dashboard">
+              <button>Home</button>
+            </Link>
+            <Link to="/profile">
+              <button>Profile</button>
+            </Link>
+            <Link to="/pantry">
+              <button>Pantry</button>
+            </Link>
+            <Link to="/">
+              <button
+                onClick={() => {
+                  this.logOut();
+                }}
+              >
+                LogOut
             </button>
-          </Link>
-        </div>
-      );
+            </Link>
+          </div>
+        );
 
     return <div>{login}</div>;
   }

@@ -43,6 +43,8 @@ class Dashboard extends Component {
   }
 
   render() {
+    console.log(this.props);
+
     const { recipes } = this.props;
 
     let mappedRecipes = recipes.map(recipe => {
