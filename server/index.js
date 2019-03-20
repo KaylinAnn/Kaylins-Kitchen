@@ -70,7 +70,7 @@ app.get("/auth/callback", (req, res) => {
               return db.get_user_by_auth0_id(auth0Id);
             })
             .then(newUser => {
-              req.session.user = newUser;
+              req.session.user = newUser[0];
               res.redirect("/dashboard");
             })
             .catch(error => {

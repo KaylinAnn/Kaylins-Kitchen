@@ -86,6 +86,7 @@ module.exports = {
   },
 
   createIngredients: (req, res) => {
+    console.log(req.session.user);
     const db = req.app.get("db");
     db.create_ingredient_by_user_id([req.session.user.id, req.body.id])
       .then(() => {

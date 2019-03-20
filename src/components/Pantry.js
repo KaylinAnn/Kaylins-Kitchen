@@ -31,6 +31,8 @@ export class Pantry extends Component {
 
   addIngredientToPantry(ingredId) {
     return axios.post("api/myingredients", { id: ingredId }).then(res => {
+      console.log(res.data);
+
       this.props.addIngredientToPantry(res.data);
       this.getUsersPantry();
     });
