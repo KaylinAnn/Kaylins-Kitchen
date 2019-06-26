@@ -1,0 +1,5 @@
+# [START gae_quickstart_yaml]
+runtime: nodejs8
+# [END gae_quickstart_yaml]
+includes:
+  - env.yaml

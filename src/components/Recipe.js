@@ -82,8 +82,8 @@ export class Recipe extends Component {
           </button>
         </div>
       ) : (
-        ""
-      );
+          ""
+        );
 
     return (
       <div className="single-recipe">
@@ -115,8 +115,8 @@ export class Recipe extends Component {
               </div>
             </div>
           ) : (
-            "no recipe here"
-          )}
+              "no recipe here"
+            )}
           <div>{recipeNotes}</div>
         </div>
       </div>
