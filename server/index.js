@@ -40,7 +40,7 @@ app.get("/auth/callback", (req, res) => {
     const accessToken = accessTockenResponse.data.access_token;
     return axios.get(
       `https://${
-        process.env.REACT_APP_AUTH0_DOMAIN
+      process.env.REACT_APP_AUTH0_DOMAIN
       }/userinfo?access_token=${accessToken}`
     );
   }
@@ -131,12 +131,12 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "..", "build")));
 
   // if no static files, send back index
-  app.get("*", function(req, res) {
+  app.get("*", function (req, res) {
     res.sendFile(path.join(__dirname, "..", "build", "index.html"));
   });
 }
 
-const PORT = 4000;
+const PORT = process.env.PORT;
 app.listen(PORT, () => {
   console.log(`app listening on port ${PORT}`);
 });
