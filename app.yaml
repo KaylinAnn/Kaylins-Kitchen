@@ -3,3 +3,6 @@ runtime: nodejs8
 # [END gae_quickstart_yaml]
 includes:
   - env.yaml
+automatic_scaling:
+  min_instances: 0
+  max_instances: 2
