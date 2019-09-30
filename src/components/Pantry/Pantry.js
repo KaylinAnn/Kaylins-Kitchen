@@ -7,7 +7,7 @@ import {
   setAllIngredients,
   addIngredientToPantry,
   deleteIngredientFromPantry
-} from "../Ducks/Reducer";
+} from "../../Ducks/Reducer";
 
 export class Pantry extends Component {
   componentDidMount() {
@@ -52,29 +52,29 @@ export class Pantry extends Component {
       usersPantry.length === 0
         ? "To start, Add Ingredient to Pantry"
         : usersPantry.map(item => {
-            return (
-              <div className="ingredient-pantry" key={item.id}>
-                <div className="food-name-pantry">{item.name}</div>
-                <button className="button-container-pantry">
-                  <i
-                    class="fas fa-arrow-alt-circle-right"
-                    onClick={() => this.deleteIngredientFromPantry(item.id)}
-                  />
-                </button>
-              </div>
-            );
-          });
+          return (
+            <div className="ingredient-pantry" key={item.id}>
+              <div className="food-name-pantry">{item.name}</div>
+              <button className="button-container-pantry">
+                <i
+                  class="fas fa-arrow-alt-circle-right"
+                  onClick={() => this.deleteIngredientFromPantry(item.id)}
+                />
+              </button>
+            </div>
+          );
+        });
 
     const { ingredients } = this.props;
 
     let filteredIngredients = usersPantry
       ? ingredients.filter(ingred => {
-          return (
-            usersPantry.filter(pantryIngred => {
-              return pantryIngred.ingredient_id === ingred.id;
-            }).length === 0
-          );
-        })
+        return (
+          usersPantry.filter(pantryIngred => {
+            return pantryIngred.ingredient_id === ingred.id;
+          }).length === 0
+        );
+      })
       : ingredients;
 
     let mappedIngredients = filteredIngredients.map(ingred => {

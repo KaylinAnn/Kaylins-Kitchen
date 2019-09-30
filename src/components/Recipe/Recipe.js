@@ -4,7 +4,7 @@ import {
   setRecipes,
   addRecipeToFavorites,
   updateRecipeNotes
-} from "../Ducks/Reducer";
+} from "../../Ducks/Reducer";
 import axios from "axios";
 
 export class Recipe extends Component {

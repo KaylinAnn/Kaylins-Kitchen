@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { connect } from "react-redux";
-import { logIn, setRecipes } from "../Ducks/Reducer";
+import { logIn, setRecipes } from "../../Ducks/Reducer";
 import { Link } from "react-router-dom";
 
 class Dashboard extends Component {

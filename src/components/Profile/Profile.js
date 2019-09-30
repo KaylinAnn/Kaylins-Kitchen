@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { setRecipes, deleteRecipeFromUsersFavorites } from "../Ducks/Reducer";
+import { setRecipes, deleteRecipeFromUsersFavorites } from "../../Ducks/Reducer";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import check from "../images/check.png";
-import x from "../images/x.png";
+import check from "../../images/check.png";
+import x from "../../images/x.png";
 
 export class Profile extends Component {
   constructor(props) {
@@ -47,31 +47,31 @@ export class Profile extends Component {
       recipes.length === 0
         ? "Save your Favorite Recipes and veiw them here."
         : recipes.map(recipe => {
-            return (
-              //       <div key={recipe.id} className="four-recipes">
-              //   <div className="recipe-label">{recipe.label}</div>
-              //   <Link to={`/recipe/${recipe.id}`}>
-              //     <img src={recipe.image} alt="recipe" />
-              //   </Link>
-              // </div>
-              <div key={recipe.id} className="four-recipes">
-                <div className="recipe-label" key={recipe.id}>
-                  {recipe.label}
-                </div>
-                <Link to={`/recipe/${recipe.id}`}>
-                  <img src={recipe.image} alt="recipe" />
-                </Link>
-                <button
-                  class="example_e"
-                  className="button_cont, deleteButton"
-                  align="center"
-                  onClick={() => this.deleteRecipeFromUsersFavorites(recipe.id)}
-                >
-                  REMOVE
-                </button>
+          return (
+            //       <div key={recipe.id} className="four-recipes">
+            //   <div className="recipe-label">{recipe.label}</div>
+            //   <Link to={`/recipe/${recipe.id}`}>
+            //     <img src={recipe.image} alt="recipe" />
+            //   </Link>
+            // </div>
+            <div key={recipe.id} className="four-recipes">
+              <div className="recipe-label" key={recipe.id}>
+                {recipe.label}
               </div>
-            );
-          });
+              <Link to={`/recipe/${recipe.id}`}>
+                <img src={recipe.image} alt="recipe" />
+              </Link>
+              <button
+                class="example_e"
+                className="button_cont, deleteButton"
+                align="center"
+                onClick={() => this.deleteRecipeFromUsersFavorites(recipe.id)}
+              >
+                REMOVE
+                </button>
+            </div>
+          );
+        });
 
     const matchedRecipes = this.state.matchedRecipes;
 
@@ -79,39 +79,39 @@ export class Profile extends Component {
       matchedRecipes.length === 0
         ? "No Matched Recipes. To start using Kaylin's Kitchen, please visit your pantry."
         : matchedRecipes.map(recipe => {
-            return (
-              <div className="mappedRecipes">
-                <div className="mappedRecipe">
-                  <div className="recipe-label-fav" key={recipe.label}>
-                    {recipe.label}
-                  </div>
-                  <Link to={`/recipe/${recipe.id}`}>
-                    <img src={recipe.image} alt="recipe" />
-                  </Link>
-                  <div>
-                    {recipe.ingredients.map(e => {
-                      return (
-                        <div className="ingredient-name-has">
-                          <div className="ingredients-name">
-                            {e.hasIngredient === true ? (
-                              <img
-                                className="check-pic"
-                                src={check}
-                                alt="yes"
-                              />
-                            ) : (
+          return (
+            <div className="mappedRecipes">
+              <div className="mappedRecipe">
+                <div className="recipe-label-fav" key={recipe.label}>
+                  {recipe.label}
+                </div>
+                <Link to={`/recipe/${recipe.id}`}>
+                  <img src={recipe.image} alt="recipe" />
+                </Link>
+                <div>
+                  {recipe.ingredients.map(e => {
+                    return (
+                      <div className="ingredient-name-has">
+                        <div className="ingredients-name">
+                          {e.hasIngredient === true ? (
+                            <img
+                              className="check-pic"
+                              src={check}
+                              alt="yes"
+                            />
+                          ) : (
                               <img className="x-pic" src={x} alt="no" />
                             )}
-                          </div>
-                          <div>{e.name}</div>
                         </div>
-                      );
-                    })}
-                  </div>
+                        <div>{e.name}</div>
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
-            );
-          });
+            </div>
+          );
+        });
 
     return (
       <div className="profile">

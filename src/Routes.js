@@ -1,10 +1,10 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-import Dashboard from "./components/Dashboard";
-import Profile from "./components/Profile";
-import Pantry from "./components/Pantry";
-import Recipe from "./components/Recipe";
-import SignIn from "./components/SignIn";
+import Dashboard from "./components/Dashboard/Dashboard";
+import Profile from "./components/Profile/Profile";
+import Pantry from "./components/Pantry/Pantry";
+import Recipe from "./components/Recipe/Recipe";
+import SignIn from "./components/SignIn/SignIn";
 
 export default (
   <Switch>
