@@ -8,7 +8,7 @@ class Dashboard extends Component {
   constructor() {
     super();
     this.state = {
-      drink: []
+      bev: []
     };
   }
   getUser() {
@@ -28,10 +28,11 @@ class Dashboard extends Component {
 
   getDrink() {
     axios.get("api/drink").then(res => {
-      const drink = res.data.drinks;
+      const bev = res.data.drinks;
+      console.log(res.data);
 
       this.setState({
-        drink
+        bev: bev
       });
     });
   }
@@ -56,7 +57,10 @@ class Dashboard extends Component {
       );
     });
 
-    const drink = this.state.drink.map(e => {
+    console.log(this.state.bev);
+
+
+    const drink = this.state.bev.map(e => {
       return (
         <div key={e.strDrink} className="drink">
           <img className="drinkPic" src={e.strDrinkThumb} alt="drink pic" />

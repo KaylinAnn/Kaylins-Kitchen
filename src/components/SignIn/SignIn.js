@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import './SignIn.css'
 
 export class SignIn extends Component {
   login() {
@@ -7,22 +9,39 @@ export class SignIn extends Component {
     );
     window.location = `https://${
       process.env.REACT_APP_AUTH0_DOMAIN
-    }/authorize?client_id=${
+      }/authorize?client_id=${
       process.env.REACT_APP_AUTH0_CLIENT_ID
-    }&scope=openid%20profile%20email&redirect_uri=${redirectUri}&response_type=code`;
+      }&scope=openid%20profile%20email&redirect_uri=${redirectUri}&response_type=code`;
   }
 
   render() {
     return (
-      <div className="loginPage">
-        <h1 className="welcome">Kaylin's Kitchen</h1>
-        <div className="loginBox">
-          <h3 className="signInMessage">
-            Sign up to start your personalized recipe search.
-          </h3>
-          <button className="loginButton" onClick={this.login}>
-            Login
-          </button>
+      // <div className="loginPage">
+      //   <h1 className="welcome">Kaylin's Kitchen</h1>
+      //   <div className="loginBox">
+      //     <h3 className="signInMessage">
+      //       Sign up to start your personalized recipe search.
+      //     </h3>
+      //     <button className="loginButton" onClick={this.login}>
+      //       Login
+      //     </button>
+      //   </div>
+      // </div>
+      <div className='home'>
+        <div className='info-container'>
+          <h1 className='title'>Kaylin's Kitchen</h1>
+          <h2 className='text'>
+            Your personalized online recipe book.
+</h2>
+          <div className='start-buttons'>
+            <button onClick={this.login} className='signup-button'>Start for free!</button>
+            <Link to="/dashboard">
+              <button className='guest-button'>Take a test drive</button>
+            </Link>
+          </div>
+        </div>
+        <div className='login-container'>
+          <button onClick={this.login} className='login-button'>LOGIN</button>
         </div>
       </div>
     );
