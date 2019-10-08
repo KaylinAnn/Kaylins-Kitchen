@@ -1,3 +1,50 @@
+.home{
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.info-container{
+  height: 60%;
+  background: url('https://res.cloudinary.com/dclawygaw/image/upload/v1557254957/heather-ford-493945-unsplash.jpg');
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+}
+
+.logo-container{
+  height: 120px;
+  width: 120px;
+  margin: auto auto;
+  margin-top: 100px;
+  /* background-color: firebrick; */
+  border-radius: 50%;
+  border: 1px solid green;
+}
+
+.title{
+  font-family: 'Fredericka the Great', cursive;
+  font-size: 50px;
+  text-align: center;
+  margin-top: 80px;
+  color: #000000;
+}
+
+.text{
+  text-align: center;
+  margin: 30px 0;
+}
+
+.logo{
+  font-size: 70px;
+  text-align: center;
+  padding-top: 20%;
+}
+
+.login-container{
+  /* background-color: rebeccapurple; */
+  height: 40%;
+}
 /* .home {
   height: 100vh;
   background: url('https://res.cloudinary.com/dclawygaw/image/upload/a_360/v1557254957/heather-ford-493945-unsplash.jpg');

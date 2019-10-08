@@ -29,18 +29,22 @@ export class SignIn extends Component {
       // </div>
       <div className='home'>
         <div className='info-container'>
+          <div className='logo-container'>
+            <h1 className='logo'>KK</h1>
+          </div>
           <h1 className='title'>Kaylin's Kitchen</h1>
           <h2 className='text'>
             Your personalized online recipe book.
 </h2>
+
+        </div>
+        <div className='login-container'>
           <div className='start-buttons'>
             <button onClick={this.login} className='signup-button'>Start for free!</button>
             <Link to="/dashboard">
               <button className='guest-button'>Take a test drive</button>
             </Link>
           </div>
-        </div>
-        <div className='login-container'>
           <button onClick={this.login} className='login-button'>LOGIN</button>
         </div>
       </div>
